@@ -8,44 +8,35 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://getbootstrap.com/2.0.2/assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://getbootstrap.com/2.0.2/assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="https://getbootstrap.com/2.0.2/assets/ico/apple-touch-icon-57-precomposed.png">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">  <!-- iconos" -->
     
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
       
       </head>
-      <body>
+<body>
       <!-- class="navbar navbar-expand-lg navbar-light bg-light" -->
-        <nav  class="navbar navbar-expand-lg navbar-light" style="background-color: #7ED0D8;">
+    <nav  class="navbar navbar-expand-lg navbar-light" style="background-color: #7ED0D8;">
       <div class="container-fluid">
         <h1><a class="navbar-brand" href="#">FASHION WORLD</a></h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              MENÚ
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="controlador.php?seccion=vista">ropa para todos</a></li>
-                <li><a class="dropdown-item" href="#"></a></li>
-                <li><a class="dropdown-item" href="#"></a></li>
-                <li><a class="dropdown-item" href="#"></a></li>
-                <li><a class="dropdown-item" href="#"></a></li>
-              </ul>
-            </li>
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=seccion1">iniciar sesion</a></li>
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=seccion2">Registrate</a></li>
-            <center>
-          </ul>
-        </div>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=vista">ir a categorias</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=seccion1">iniciar sesion</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="controlador.php?seccion=seccion2">Registrate</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="favoritos.php"><i class="fa fa-heart"></i> favoritos <span id="favoritos-count" class="badge badge-pill badge-primary"></span></a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="carrito.php"><i class="fa fa-shopping-cart"></i> ver carrito <span id="carrito-count" class="badge badge-pill badge-primary"></span></a></li>
+    </ul>
+</div>
+
       </div>
     </nav>
-
-    
-    </body>
+</body>
                      
                 <!-- Se declara un contenedor fila y después un contenedor columna. LAs columnas deben sumar 12, según la rejilla Bootstrap. -->
     

@@ -44,14 +44,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 } else {
                     echo "<p>Error al agregar el producto a favoritos.</p>";
                 }
-            } else {
-                echo "<p>Error en la preparación de la consulta de inserción.</p>";
             }
-        } else {
-            echo "<p>Producto no encontrado.</p>";
-        }
-    } else {
-        echo "<p>Error en la consulta.</p>";
+        } 
     }
 }
 ?>

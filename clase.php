@@ -43,7 +43,7 @@ class productos {
     public static function mostrarProductos() {
         include 'conexion.php';
         $salida = "";
-        $ids = [1, 8,3,4,14, 19,16,20,23];
+        $ids = [1,4,7,12,15,16];
         $id = implode(',', $ids);
         $sql = "SELECT * FROM tb_productos WHERE id_producto IN ($id)";
         $consulta = $conexion->query($sql);
@@ -60,7 +60,7 @@ class productos {
     public static function mostrarCategorias() {
         include 'conexion.php';
         $salida = "";
-        $ids = [1, 8, 9, 10, 11, 12];
+        $ids = [1,2,3,4,5,6];
         $id = implode(',', $ids);  
         $sql = "SELECT * FROM tb_productos WHERE id_producto IN ($id)";
         $consulta = $conexion->query($sql);
@@ -84,7 +84,7 @@ class productos {
     public static function CateNiños() {
         include 'conexion.php';
         $salida = "";
-        $ids = [2, 3, 4, 5, 6, 7];
+        $ids = [22,23,24,25,26,27];
         $id = implode(',', $ids);
         $sql = "SELECT * FROM tb_productos WHERE id_producto IN ($id)";
         $consulta = $conexion->query($sql);
@@ -108,7 +108,7 @@ class productos {
     public static function verAccesorios() {
         include 'conexion.php';
         $salida = "";
-        $ids = [13, 14, 15, 16, 17, 18];
+        $ids = [13,14,15,16,17,18];
         $id = implode(',', $ids);
         $sql = "SELECT * FROM tb_productos WHERE id_producto IN ($id)";
         $consulta = $conexion->query($sql);
@@ -132,7 +132,7 @@ class productos {
     public static function verZapatos() {
         include 'conexion.php';
         $salida = "";
-        $ids = [19, 20, 21, 22, 23, 24];
+        $ids = [7,8,9,10,11,12,19,20,21];
         $id = implode(',', $ids);
         $sql = "SELECT * FROM tb_productos WHERE id_producto IN ($id)";
         $consulta = $conexion->query($sql);
@@ -146,6 +146,7 @@ class productos {
             $salida .= "<a class='custom-button' href='carrito.php?id=" . $fila['id_producto'] . "'><i class='fas fa-shopping-cart'></i> añadir a carrito</a>";
             $salida .= "<a class='custom-button' href='favoritos.php?id=" . $fila['id_producto'] . "'><i class='fas fa-heart'></i> Favoritos</a>";
             $salida .= "</div><br>";
+            $salida .= "<p>" . $fila['detalles'] . "</p>";
             $salida .= "</div>";
         }
         $salida .= "</div>";
@@ -193,6 +194,10 @@ class productos {
         if ($stmt = $conexion->prepare($sql)) {
             $stmt->execute();
             $resultado = $stmt->get_result();
+
+            if($resultado->now_rows === 0){
+                return '';
+            }
     
             $salida .= "<div class='categorias'>";
             while ($fila = $resultado->fetch_assoc()) {
@@ -235,15 +240,15 @@ class productos {
         $salida .= '<div class="container-fluid">';
         $salida .= '<div class="col-md-3">';
         $salida .= '<div class="usuario">';
-        $salida .= '<a href="carrito.php" class="btn wishlist">';
+        $salida .= '<a href="favoritos.php" class="btn wishlist">';
         $salida .= '<i class="fa fa-heart"></i>';
-        $salida .= '<span>ver carrito</span>';
-        $salida .= '<span id="carrito-count" class="badge badge-pill badge-primary">' . $carrito_count . '</span>';
-        $salida .= '</a>';
-        $salida .= '<a href="favoritos.php" class="btn cart">';
-        $salida .= '<i class="fa fa-shopping-cart"></i>';
         $salida .= '<span>favoritos</span>';
         $salida .= '<span id="favoritos-count" class="badge badge-pill badge-primary">' . $favoritos_count . '</span>';
+        $salida .= '</a>';
+        $salida .= '<a href="carrito.php" class="btn cart">';
+        $salida .= '<i class="fa fa-shopping-cart"></i>';
+        $salida .= '<span>ver carrito</span>';
+        $salida .= '<span id="carrito-count" class="badge badge-pill badge-primary">' . $carrito_count  . '</span>';
         $salida .= '</a>';
         $salida .= '</div>';
         $salida .= '</div>';

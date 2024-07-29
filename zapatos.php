@@ -8,6 +8,26 @@ include 'plantill2.php';
     <link href="css/estilo.css" rel="stylesheet">
     <link href="css/stylePro.css" rel="stylesheet">
     <link href="css/pie_pagina.css" rel="stylesheet">
+
+
+    <style>
+        /* Estilo para el mensaje de selección de talla */
+        #mensaje-talla {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            background-color: pink;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        #mensaje-talla.show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="producto" onmouseover="cambiarColor(this)" onmouseout="restablecerColor(this)">
@@ -23,14 +43,18 @@ include 'plantill2.php';
                 </center>
             </div>
             <div class="col">
-              <div class="p-3 border bg-light">selecciona <div>
-              <div class="zapato">
-                    <h4>tallas:</h4>
-                    <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn">30</button>
-                    <button type="button" class="btn">35</button>
-                    </div> 
-                </div>
+                    <div class="p-3 border bg-light">
+                        <div class="zapato">
+                            <h4>tallas:</h4>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn" onclick="seleccionarTalla(35)">27</button>
+                                <button type="button" class="btn" onclick="seleccionarTalla(30)">30</button>
+                                <button type="button" class="btn" onclick="seleccionarTalla(35)">35</button>
+                                <button type="button" class="btn" onclick="seleccionarTalla(35)">37</button>
+                                <button type="button" class="btn" onclick="seleccionarTalla(35)">38</button>
+                            </div> 
+                        </div>
+                    </div>
             </div>
         </div>
       </div>
@@ -56,7 +80,7 @@ include 'plantill2.php';
                                 <div class="social">
                                     <a href=""><i class="fab fa-twitter"></i></a>
                                     <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -64,5 +88,16 @@ include 'plantill2.php';
                 </div>
             </div>
         </div>
+        <div id="mensaje-talla">Seleccionaste la talla</div>
+    <script>
+        function seleccionarTalla(talla) {
+            var mensajeTalla = document.getElementById('mensaje-talla');
+            mensajeTalla.textContent = 'Seleccionaste la talla ' + talla;
+            mensajeTalla.classList.add('show');
+            setTimeout(function() {
+                mensajeTalla.classList.remove('show');
+            }, 3000); // este mensaje aparece durante 3 segundos
+        }
+    </script>
 
 </body>

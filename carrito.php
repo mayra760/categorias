@@ -23,6 +23,17 @@ include 'plantill2.php';
     include_once 'clase.php';
     echo productos::verCarrito();
 
+
+$carritoContenido= productos::verCarrito();
+
+if(empty($carritoContenido)){
+    $salida="<div class='empty-cart-message'>";
+    $salida="<h1>el carrito esta vacio</h1>";
+    $salida="</div>";
+}else{
+    echo $carritoContenido;
+}
+
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         $id_producto = intval($_GET['id']);
         
@@ -34,12 +45,12 @@ include 'plantill2.php';
 
             if ($producto = $resultado->fetch_assoc()) {
                 $nombre_producto = $producto['nombre_producto'];
-                $precio_pro = $producto['precio'];
+                $precio = $producto['precio'];
 
                 // Incluye los productos en la base de datos
-                $sql_insert = "INSERT INTO tb_carrito (nombre_producto, cantidad_pro, precio_pro) VALUES (?, 1, ?)";
+                $sql_insert = "INSERT INTO tb_carrito (nombre_producto, cantidad_pro, precio_pro) VALUES (?, 2, ?)";
                 if ($stmt_insert = $conexion->prepare($sql_insert)) {
-                    $stmt_insert->bind_param('sd', $nombre_producto, $precio_pro);
+                    $stmt_insert->bind_param('sd', $nombre_producto, $precio);
                     $stmt_insert->execute();
                 }
             }

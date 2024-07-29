@@ -4,9 +4,9 @@
     <title><?php echo 'vistas'; ?></title>
     <link href="img/favicon.ico" rel="icon">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="lib/slick/slick.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">   
     <link href="css/style2.css" rel="stylesheet">
+    <link href="css/pie_pagina.css" rel="stylesheet">
     <style>
         .producto img {
             width: 80%;
@@ -22,30 +22,7 @@
     </style>
 </head>
 <body>
-    <div class="bottom-bar">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="search">
-                        <input type="text" placeholder="Buscar">
-                        <button><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="user">
-                        <a href="carrito.php" class="btn wishlist">
-                            <i class="fa fa-heart"></i>
-                            <span>ver carrito </span>
-                        </a>
-                        <a href="favoritos.php" class="btn cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>favorito</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="breadcrumb-wrap">
         <div class="container-fluid">
             <ul class="breadcrumb">
@@ -87,6 +64,35 @@
                                 </li>
                             </ul>
                         </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="footer-widget">
+                        <h2>contáctenos:</h2>
+                        <div class="contacto-info">
+                            <p><i class="fa fa-map-marker"></i> san jose del guaviare, Colombia</p>
+                            <p><i class="fa fa-envelope"></i> fashionworld@gmail.com</p>
+                            <p><i class="fa fa-phone"></i> +57-3135678748</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-6">
+                    <div class="footer-widget">
+                        <h5>Encuéntrenos en nuestras redes sociales</h5>
+                        <div class="contacto-info">
+                            <div class="social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
