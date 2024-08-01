@@ -23,13 +23,6 @@
 </head>
 <body>
 
-    <div class="breadcrumb-wrap">
-        <div class="container-fluid">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Volver al inicio</a></li>
-            </ul>
-        </div>
-    </div>
 
     <?php
     echo ' <h2><center>Aquí encontraras</center></h2><br>';
@@ -100,4 +93,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/carrito.js"></script>
+    <script src="js/alerta.js"></script>
 </body>

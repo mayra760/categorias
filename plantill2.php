@@ -35,7 +35,7 @@
 </div>
 
       </div>
-    </nav>
+    </nav> 
 </body>
                      
                 <!-- Se declara un contenedor fila y después un contenedor columna. LAs columnas deben sumar 12, según la rejilla Bootstrap. -->

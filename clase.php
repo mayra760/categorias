@@ -71,7 +71,7 @@ class productos {
             $salida .= "<strong> $" . $fila['precio'] . "</strong>";
             $salida .= "<img src='" . $fila['ruta_img'] . "' alt='" . $fila['ruta_img'] . "' class='img-thumbnail'>";
             $salida .= "<div class='carfav'>";
-            $salida .= "<a class='custom-button' href='carrito.php?id=" . $fila['id_producto'] . "'><i class='fas fa-shopping-cart'></i> añadir a carrito</a>";
+            $salida .= "<button class='btn btn-primary btn-agregar-carrito' data-id='{$fila['id_producto']}'>Agregar al carrito</button>";
             $salida .= "<a class='custom-button' href='favoritos.php?id=" . $fila['id_producto'] . "'><i class='fas fa-heart'></i> Favoritos</a>";
             $salida .= "</div><br>";  
             $salida .= "</div>";
@@ -95,7 +95,7 @@ class productos {
             $salida .= "<strong> $" . $fila['precio'] . "</strong>";
             $salida .= "<img src='" . $fila['ruta_img'] . "' alt='" . $fila['nombre_producto'] . "' class='img-thumbnail'>";
             $salida .= "<div class='carfav'>";
-            $salida .= "<a class='custom-button' href='carrito.php?id=" . $fila['id_producto'] . "'><i class='fas fa-shopping-cart'></i> añadir a carrito</a>";
+            $salida .= "<button class='btn btn-primary btn-agregar-carrito' data-id='{$fila['id_producto']}'>Agregar al carrito</button>";
             $salida .= "<a class='custom-button' href='favoritos.php?id=" . $fila['id_producto'] . "'><i class='fas fa-heart'></i> Favoritos</a>";
             $salida .= "</div><br>";  
             $salida .= "</div>";
@@ -119,7 +119,7 @@ class productos {
             $salida .= "<strong> $" . $fila['precio'] . "</strong>";
             $salida .= "<img src='" . $fila['ruta_img'] . "' alt='" . $fila['nombre_producto'] . "' class='img-thumbnail'>";
             $salida .= "<div class='carfav'>";
-            $salida .= "<a class='custom-button' href='carrito.php?id=" . $fila['id_producto'] . "'><i class='fas fa-shopping-cart'></i> añadir a carrito</a>";
+            $salida .= "<button class='btn btn-primary btn-agregar-carrito' data-id='{$fila['id_producto']}'>Agregar al carrito</button>";
             $salida .= "<a class='custom-button' href='favoritos.php?id=" . $fila['id_producto'] . "'><i class='fas fa-heart'></i> Favoritos</a>";
             $salida .= "</div><br>";
             $salida .= "</div>";
@@ -143,7 +143,7 @@ class productos {
             $salida .= "<strong> $" . $fila['precio'] . "</strong>";
             $salida .= "<img src='" . $fila['ruta_img'] . "' alt='" . $fila['nombre_producto'] . "' class='img-thumbnail'>";
             $salida .= "<div class='carfav'>";
-            $salida .= "<a class='custom-button' href='carrito.php?id=" . $fila['id_producto'] . "'><i class='fas fa-shopping-cart'></i> añadir a carrito</a>";
+            $salida .= "<button class='btn btn-primary btn-agregar-carrito' data-id='{$fila['id_producto']}'>Agregar al carrito</button>";
             $salida .= "<a class='custom-button' href='favoritos.php?id=" . $fila['id_producto'] . "'><i class='fas fa-heart'></i> Favoritos</a>";
             $salida .= "</div><br>";
             $salida .= "<p>" . $fila['detalles'] . "</p>";
@@ -153,6 +153,7 @@ class productos {
         
         return $salida;
     }
+
 
     public static function verFavoritos() {
         include 'conexion.php';
@@ -187,79 +188,32 @@ class productos {
     public static function verCarrito() {
         include 'conexion.php';
         $salida = "";
-        $sql = "SELECT c.id_ca, c.nombre_producto, c.cantidad_pro, c.precio_pro, p.ruta_img
-                FROM tb_carrito c
-                JOIN tb_productos p ON c.nombre_producto = p.nombre_producto";
-    
-        if ($stmt = $conexion->prepare($sql)) {
-            $stmt->execute();
-            $resultado = $stmt->get_result();
-
-            if($resultado->now_rows === 0){
-                return '';
-            }
-    
-            $salida .= "<div class='categorias'>";
-            while ($fila = $resultado->fetch_assoc()) {
-                $salida .= "<div class='categoria'>";
-                $salida .= "<h5><p><li>" . $fila['nombre_producto'] . "; por solo: </h5></li></p>";
-                $salida .= "<strong> $" . $fila['precio_pro'] . "</strong>";
-                $salida .= "<img src='" . $fila['ruta_img'] . "' alt='" . $fila['nombre_producto'] . "' class='img-thumbnail'>";
-                $salida .= "<div class='carfav'>";
-                $salida .= "<a class='custom-button' href='eliminarCa.php?id=" . $fila['id_ca'] . "'><i class='fas fa-trash'></i> Eliminar</a>";
-                $salida .= "</div><br>";
-                $salida .= "</div>";
-            }
-            $salida .= "</div>";
-        } else {
-            $salida .= "<p>Error al recuperar los favoritos.</p>";
+        $sql = "SELECT * FROM tb_carrito";
+        $consulta = $conexion->query($sql);
+        $salida .= "<table class='table'>";
+        $salida .= "<thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Total</th><th>Eliminar</th></tr></thead><tbody>";
+        $subtotal = 0;
+        while ($fila = $consulta->fetch_assoc()) {
+            $total_producto = $fila['precio_pro'] * $fila['cantidad_pro'];
+            $subtotal += $total_producto;
+            $salida .= "
+                <tr>
+                    <td>{$fila['nombre_producto']}</td>
+                    <td>\${$fila['precio_pro']}</td>
+                    <td>
+                        <div class='quantity-buttons'>
+                            <input type='text' value='{$fila['cantidad_pro']}' class='quantity-input' readonly>
+                        </div>
+                    </td>
+                    <td>\${$total_producto}</td>
+                    <td>
+                        <a href='eliminarCa.php?id={$fila['id_ca']}' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a>
+                    </td>
+                </tr>";
         }
-    
+        $salida .= "</tbody></table>";
+  
         return $salida;
     }
-
-
-    public static function botones() {
-        include 'conexion.php';
-
-        // Obtener el conteo actual de productos en el carrito y favoritos
-        $carrito_count = 0;
-        $favoritos_count = 0;
-
-        if ($result = $conexion->query("SELECT COUNT(*) AS count FROM tb_carrito")) {
-            $row = $result->fetch_assoc();
-            $carrito_count = $row['count'];
-        }
-
-        if ($result = $conexion->query("SELECT COUNT(*) AS count FROM tb_favoritos")) {
-            $row = $result->fetch_assoc();
-            $favoritos_count = $row['count'];
-        }
-
-        $salida = '<div class="botones">';
-        $salida .= '<div class="container-fluid">';
-        $salida .= '<div class="col-md-3">';
-        $salida .= '<div class="usuario">';
-        $salida .= '<a href="favoritos.php" class="btn wishlist">';
-        $salida .= '<i class="fa fa-heart"></i>';
-        $salida .= '<span>favoritos</span>';
-        $salida .= '<span id="favoritos-count" class="badge badge-pill badge-primary">' . $favoritos_count . '</span>';
-        $salida .= '</a>';
-        $salida .= '<a href="carrito.php" class="btn cart">';
-        $salida .= '<i class="fa fa-shopping-cart"></i>';
-        $salida .= '<span>ver carrito</span>';
-        $salida .= '<span id="carrito-count" class="badge badge-pill badge-primary">' . $carrito_count  . '</span>';
-        $salida .= '</a>';
-        $salida .= '</div>';
-        $salida .= '</div>';
-        $salida .= '</div>';
-        $salida .= '</div>';
-        
-        return $salida;
-    }
-
-
-
-    
-
 }
+  

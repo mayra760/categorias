@@ -49,35 +49,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     }
 }
 ?>
-    <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="footer-widget">
-                            <h2>contactenos:</h2>
-                            <div class="contacto-info">
-                                <p><i class="fa fa-map-marker"></i>  san jose del guaviare, Colombia</p>
-                                <p><i class="fa fa-envelope"></i> fashionworld@gmail.com</p>
-                                <p><i class="fa fa-phone"></i> +57-3135678748</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-6">
-                        <div class="footer-widget">
-                            <h5>Encuentrenos en nuestras redes sociales</h5>
-                            <div class="contacto-info">
-                                <div class="social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="js/scriptt.js"></script>
 </body>
